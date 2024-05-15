@@ -1,0 +1,9 @@
+
+[MESSAGES CONTROL]
+disable=invalid-name
+
+[BASIC]
+good-names=snake_case,_
+
+[FORMAT]
+max-line-length=120
