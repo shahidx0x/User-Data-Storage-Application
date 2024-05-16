@@ -1,6 +1,8 @@
 from sqlalchemy import Column,Integer,String
 from app.database.database import Base
 
+from sqlalchemy.orm import relationship
+
 class Parent(Base):
     __tablename__ = "parents"
     id= Column(Integer,primary_key=True,index=True)
@@ -10,6 +12,8 @@ class Parent(Base):
     address_city=Column(String)
     address_state=Column(String)
     address_zip=Column(String)
+    
+    childreen = relationship("Child",back_populates="parent")    
     
     
     
