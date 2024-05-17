@@ -1,14 +1,37 @@
-from fastapi import APIRouter,Depends
+from fastapi import APIRouter,Depends,HTTPException
 from sqlalchemy.orm import Session
 from app.controllers.parent_controller import (
-    create
+    create,
+    read_parrent,
+    read_parents,
+    delete_parent,
+    update_parent
 )
 
 from app.database.database import get_db
 
 router = APIRouter()
 
-@router.post("/parents")
-async def create_parent(parent_data:dict,db:Session = Depends(get_db)):
-    parent = await create(db,parent_data)
-    return parent
+parent_example = {
+    "first_name": "John",
+    "last_name": "Doe",
+    "address_city": "Anytown",
+    "address_zip": "12345",
+    "address_street": "123 Main St",
+    "address_state": "CA"
+}
+
+@router.post("/parents",status_code=201)
+def create_parent(parent_data:dict,db:Session = Depends(get_db)):
+    try:
+        create(db,parent_data)
+        return {"message" : "Parent Successfully Created!"}
+    except Exception as e:
+        raise HTTPException(status_code=500,detail=f"Internal Server Error : {str(e)}")
+
+@router.get("/parents",status_code=200)
+def get_parents(db:Session=Depends(get_db)):
+    try:
+        read
+
+
