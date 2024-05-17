@@ -1,7 +1,7 @@
 from fastapi import APIRouter,Depends
 from sqlalchemy.orm import Session
 from app.controllers.parent_controller import (
-    create_parent
+    create
 )
 
 from app.database.database import get_db
@@ -9,5 +9,6 @@ from app.database.database import get_db
 router = APIRouter()
 
 @router.post("/parents")
-def create_parent(parent_data:dict,db:Session = Depends(get_db)):
-    return create_parent(db,parent_data)
+async def create_parent(parent_data:dict,db:Session = Depends(get_db)):
+    parent = await create(db,parent_data)
+    return parent
