@@ -13,8 +13,10 @@ def create(db:Session,parent_data):
 
 def read_parents(db:Session):
     try:
-        db.query(Parent).all()
+        parents =  db.query(Parent).all()
+        return parents
     except Exception as e:
+        print(e)
         raise Exception(f"Unable to fetch parents : {str(e)}")
 
 def read_parrent(db:Session,parent_id:int):

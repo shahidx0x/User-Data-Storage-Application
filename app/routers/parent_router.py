@@ -9,6 +9,7 @@ from app.controllers.parent_controller import (
 )
 
 from app.database.database import get_db
+from app.models.parent_model import Parent
 
 router = APIRouter()
 
@@ -29,9 +30,14 @@ def create_parent(parent_data:dict,db:Session = Depends(get_db)):
     except Exception as e:
         raise HTTPException(status_code=500,detail=f"Internal Server Error : {str(e)}")
 
-@router.get("/parents",status_code=200)
+@router.get("/parents")
 def get_parents(db:Session=Depends(get_db)):
     try:
-        read
+        parent =  read_parents(db)
+        return parent
+    except Exception as e:
+        raise HTTPException(status_code=500,detail=f"Internal Server Error : {str(e)}")
+
+
 
 
