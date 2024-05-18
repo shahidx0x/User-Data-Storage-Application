@@ -48,7 +48,6 @@ source venv/bin/activate
 ```
 7.Install the required dependencies: `pip install -r requirements.txt`
 
-=======
 
 #### Running the Application
 
