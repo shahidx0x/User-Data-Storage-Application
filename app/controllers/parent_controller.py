@@ -24,14 +24,6 @@ def read_many(db:Session,search:str,limit:int,page:int):
         print(e)
         raise Exception(f"unable to fetch parents : {str(e)}")
 
-def read_one(db:Session,parent_id:int):
-    try:
-        parent = db.query(Parent).filter(Parent.id == parent_id).first()
-        if not parent:
-            raise Exception("parent not found")
-        return parent
-    except Exception as e:
-        raise Exception(f"unable to fetch parent with id {str(parent_id)} : {str(e)}")
 
 def update_one(db: Session, parent_id: int, parent_data:ParentUpdateSchema):
     print(parent_data.model_dump())

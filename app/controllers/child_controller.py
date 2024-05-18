@@ -32,15 +32,6 @@ def read_many(db: Session,search:str,limit:int,page:int):
         raise Exception(f"unable to fetch child : {str(e)}")
 
 
-def read_one(db:Session,child_id:int):
-    try:
-        children = db.query(Child).filter(Child.id == child_id).first()
-        if not children:
-            raise Exception("children not found")
-        return children
-    except Exception as e:
-        raise Exception(f"unable to fetch child with id {str(child_id)} : {str(e)}")
-
 def update_one(db: Session, children_id: int, children_data:ChildrenUpdateSchema):
     try:
         children_query = db.query(Child).filter(Child.id == children_id)
