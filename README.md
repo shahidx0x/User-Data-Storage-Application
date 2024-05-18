@@ -33,8 +33,8 @@ This API follows the OpenAPI 3.1.0 specification. API Doc : [http://localhost:80
 
 #### Installation
 
-1. Clone the repository from GitHub: `git clone <repository_url>`
-2. Navigate to the project directory: `cd user-data-app`
+1. Clone the repository from GitHub: `git clone https://github.com/shahidx0x/User-Data-Storage-Application.git`
+2. Navigate to the project directory: `cd User-Data-Storage-Application`
 3. Install the required dependencies: `pip install -r requirements.txt`
 
 #### Running the Application
