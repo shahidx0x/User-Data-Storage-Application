@@ -33,8 +33,7 @@ def update_parent(parent_id:int,parent_data: ParentUpdateSchema = Body(...), db:
     try:
     
         updated = update_one(db,parent_id,parent_data)
-        print(updated)
-        return updated
+        return {'status': 'updated','data': updated}
         
     except Exception as e:
         raise HTTPException(status_code=500,detail=f"Internal Server Error : {str(e)}")
