@@ -11,7 +11,7 @@ class Parent(Base):
     address_city = Column(String)
     address_state = Column(String)
     address_zip = Column(String)
-    children = relationship("Child", back_populates="parent")   
+    children = relationship("Child", back_populates="parent",lazy='joined')   
     
     
     

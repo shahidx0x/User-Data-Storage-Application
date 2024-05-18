@@ -8,8 +8,8 @@ class Child(Base):
     first_name = Column(String)
     last_name = Column(String)
     parent_id = Column(Integer, ForeignKey("parents.id"))
-    parent = relationship("Parent", back_populates="children")
+    parent = relationship("Parent", back_populates="children",lazy='joined')
     
-    
+
     
     
