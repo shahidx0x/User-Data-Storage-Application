@@ -12,7 +12,6 @@ This application is designed to store user data, including information such as f
 
 All endpoints are relative to the following base URL: [http://localhost:8000](http://localhost:8000)
 
-
 #### API Documentation
 
 This API follows the OpenAPI 3.1.0 specification. API Doc : [http://localhost:8000/doc](http://localhost:8000)
@@ -35,7 +34,21 @@ This API follows the OpenAPI 3.1.0 specification. API Doc : [http://localhost:80
 
 1. Clone the repository from GitHub: `git clone https://github.com/shahidx0x/User-Data-Storage-Application.git`
 2. Navigate to the project directory: `cd User-Data-Storage-Application`
-3. Install the required dependencies: `pip install -r requirements.txt`
+3. Run the following command to create a virtual environment named 'venv':
+ ```bash
+ python -m venv venv
+ ```
+4. On Windows:
+```bash
+venv\Scripts\activate
+```
+6. On Linux:
+```bash
+source venv/bin/activate
+```
+7.Install the required dependencies: `pip install -r requirements.txt`
+
+=======
 
 #### Running the Application
 
