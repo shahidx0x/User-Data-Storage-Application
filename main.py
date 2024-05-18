@@ -17,5 +17,5 @@ app.add_middleware(
     allow_headers=['*'],
 )
 
-app.include_router(parent_router)
-app.include_router(children_router)
+app.include_router(parent_router,tags="P")
+app.include_router(children_router,tags="C")
