@@ -1,4 +1,4 @@
-from fastapi import APIRouter,Depends,HTTPException,Query
+from fastapi import APIRouter,Depends,HTTPException,Query,Body
 from sqlalchemy.orm import Session
 from app.controllers.parent_controller import (
     create,
@@ -7,7 +7,7 @@ from app.controllers.parent_controller import (
 )
 
 from app.database.database import get_db
-from app.schemas.Schema import ParentSchema
+from app.schemas.Schema import ParentSchema,ParentUpdateSchema
 
 router = APIRouter()
 
@@ -29,10 +29,13 @@ def get_parents(db:Session=Depends(get_db),search:str = Query(default='',descrip
         raise HTTPException(status_code=500,detail=f"Internal Server Error : {str(e)}")
 
 @router.put("/parents/{parent_id}")
-def update_parent(parent_id:int,parent_data=dict, db:Session=Depends(get_db)):
+def update_parent(parent_id:int,parent_data: ParentUpdateSchema = Body(...), db:Session=Depends(get_db)):
     try:
+    
         updated = update_one(db,parent_id,parent_data)
         print(updated)
+        return updated
+        
     except Exception as e:
         raise HTTPException(status_code=500,detail=f"Internal Server Error : {str(e)}")
 
