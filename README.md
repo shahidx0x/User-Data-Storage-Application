@@ -14,7 +14,7 @@ All endpoints are relative to the following base URL: [http://localhost:8000](ht
 
 #### API Documentation
 
-This API follows the OpenAPI 3.1.0 specification. API Doc : [http://localhost:8000/doc](http://localhost:8000)
+This API follows the OpenAPI 3.1.0 specification. API Doc : [http://localhost:8000/docs](http://localhost:8000/docs)
 
 #### Features
 
