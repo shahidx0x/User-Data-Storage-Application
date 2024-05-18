@@ -1,6 +1,5 @@
 from sqlalchemy import Column,Integer,String
 from app.database.database import Base
-from app.models.child_model import Child
 from sqlalchemy.orm import relationship
 
 class Parent(Base):
