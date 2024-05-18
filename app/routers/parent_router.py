@@ -3,7 +3,8 @@ from sqlalchemy.orm import Session
 from app.controllers.parent_controller import (
     create,
     read_many,
-    update_one
+    update_one,
+    delete_one
 )
 
 from app.database.database import get_db
@@ -28,14 +29,22 @@ def get_parents(db:Session=Depends(get_db),search:str = Query(default='',descrip
     except Exception as e:
         raise HTTPException(status_code=500,detail=f"Internal Server Error : {str(e)}")
 
-@router.put("/parents/{parent_id}")
+@router.patch("/parents/{parent_id}")
 def update_parent(parent_id:int,parent_data: ParentUpdateSchema = Body(...), db:Session=Depends(get_db)):
     try:
-    
         updated = update_one(db,parent_id,parent_data)
         return {'status': 'updated','data': updated}
         
     except Exception as e:
         raise HTTPException(status_code=500,detail=f"Internal Server Error : {str(e)}")
 
-
+@router.delete("/parents/{parent_id}")
+def delete_parent(parent_id:int,db: Session=Depends(get_db)):
+    try:
+        deleted = delete_one(db,parent_id)
+        if deleted:
+           return {'status': 'deleted','id': parent_id}
+    except Exception as e:
+        raise HTTPException(status_code=500,detail=f"Internal Server Error : {str(e)}")
+        
+        
