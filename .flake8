@@ -1,0 +1,6 @@
+[flake8]
+extensions = .py
+select = E,W
+
+[isort]
+skip = venv,__pycache__,node_modules

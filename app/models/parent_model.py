@@ -1,6 +1,7 @@
-from sqlalchemy import Column,Integer,String
+from sqlalchemy import Column, Integer, String
 from app.database.database import Base
 from sqlalchemy.orm import relationship
+
 
 class Parent(Base):
     __tablename__ = "parents"
@@ -11,7 +12,4 @@ class Parent(Base):
     address_city = Column(String)
     address_state = Column(String)
     address_zip = Column(String)
-    children = relationship("Child", back_populates="parent",lazy='joined')   
-    
-    
-    
+    children = relationship("Child", back_populates="parent", lazy='joined')

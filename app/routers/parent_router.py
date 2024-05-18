@@ -1,4 +1,4 @@
-from fastapi import APIRouter,Depends,HTTPException,Query,Body
+from fastapi import APIRouter, Depends, HTTPException, Query, Body
 from sqlalchemy.orm import Session
 from app.controllers.parent_controller import (
     create,
@@ -8,43 +8,60 @@ from app.controllers.parent_controller import (
 )
 
 from app.database.database import get_db
-from app.schemas.Schema import ParentSchema,ParentUpdateSchema
+from app.schemas.Schema import ParentSchema, ParentUpdateSchema
 
 router = APIRouter()
 
-@router.post("/parents",status_code=201)
-def create_parent(parent_data:ParentSchema,db:Session = Depends(get_db)):
+
+@router.post("/parents", status_code=201)
+def create_parent(parent_data: ParentSchema, db: Session = Depends(get_db)):
     try:
-        create(db,parent_data)
-        return {"message" : "Parent Successfully Created!"}
+        create(db, parent_data)
+        return {"message": "Parent Successfully Created!"}
     except Exception as e:
-        raise HTTPException(status_code=500,detail=f"Internal Server Error : {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Internal Server Error : {
+                str(e)}")
+
 
 @router.get("/parents")
-def get_parents(db:Session=Depends(get_db),search:str = Query(default='',description='search by first name'),page:int = Query(default=1,description='page number'),limit:int =  Query(default=10,description='how much content should display in the first page')):
+def get_parents(db: Session = Depends(get_db), search: str = Query(default='', description='search by first name'), page: int = Query(
+        default=1, description='page number'), limit: int = Query(default=10, description='how much content should display in the first page')):
     try:
-        parents = read_many(db,search,limit,page)
-        return {'status': 'success', 'meta': {'limit' : limit,'page':page}, 'results': len(parents), 'data': parents}
+        parents = read_many(db, search, limit, page)
+        return {'status': 'success', 'meta': {'limit': limit,
+                                              'page': page}, 'results': len(parents), 'data': parents}
 
     except Exception as e:
-        raise HTTPException(status_code=500,detail=f"Internal Server Error : {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Internal Server Error : {
+                str(e)}")
+
 
 @router.patch("/parents/{parent_id}")
-def update_parent(parent_id:int,parent_data: ParentUpdateSchema = Body (...), db:Session=Depends(get_db)):
+def update_parent(parent_id: int, parent_data: ParentUpdateSchema = Body(...),
+                  db: Session = Depends(get_db)):
     try:
-        updated = update_one(db,parent_id,parent_data)
-        return {'status': 'updated','data': updated}
-        
+        updated = update_one(db, parent_id, parent_data)
+        return {'status': 'updated', 'data': updated}
+
     except Exception as e:
-        raise HTTPException(status_code=500,detail=f"Internal Server Error : {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Internal Server Error : {
+                str(e)}")
+
 
 @router.delete("/parents/{parent_id}")
-def delete_parent(parent_id:int,db: Session=Depends(get_db)):
+def delete_parent(parent_id: int, db: Session = Depends(get_db)):
     try:
-        deleted = delete_one(db,parent_id)
+        deleted = delete_one(db, parent_id)
         if deleted:
-            return {'status': 'deleted','id': parent_id}
+            return {'status': 'deleted', 'id': parent_id}
     except Exception as e:
-        raise HTTPException(status_code=500,detail=f"Internal Server Error : {str(e)}")
-        
-        
+        raise HTTPException(
+            status_code=500,
+            detail=f"Internal Server Error : {
+                str(e)}")

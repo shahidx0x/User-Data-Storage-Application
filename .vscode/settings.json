@@ -3,6 +3,7 @@
     "autoflush",
     "childrens",
     "fastapi",
+    "Parens",
     "pydantic",
     "sessionmaker",
     "sqlalchemy"
