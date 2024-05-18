@@ -36,7 +36,7 @@ This API follows the OpenAPI 3.1.0 specification. API Doc : [http://localhost:80
 2. Navigate to the project directory: `cd User-Data-Storage-Application`
 3. Run the following command to create a virtual environment named 'venv':
  ```bash
- python -m venv venv
+ python3 -m venv venv
  ```
 4. On Windows:
 ```bash
